@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { mycontext } from './Context'
 import { Await } from 'react-router-dom'
+import { API_URL, API_BASE_URL } from "../api";
 const Friends = (props) => {
 
 
@@ -18,7 +19,7 @@ const Friends = (props) => {
         let {value}=e.target  
         if(value.length >=2){
             
-        let myres= await fetch(`http://localhost:5000/api/users/search?q=${value}`,{
+        let myres= await fetch(`${API_BASE_URL}/users/search?q=${value}`,{
             method:"GET",
            headers:{
             Authorization:`Bearer ${token}` 
@@ -40,7 +41,7 @@ const Friends = (props) => {
 
 
    async function myConvo(id){
-        let  res=await fetch("http://localhost:5000/api/conversations/direct",{
+        let  res=await fetch(`${API_BASE_URL}/conversations/direct`,{
             method:"POST",
             headers:{
             Authorization:`Bearer ${token}` ,

@@ -5,6 +5,7 @@ import { useNavigate ,Navigate,Link} from 'react-router-dom'
 import Friends from './Friends'
 import Message from './Message'
 import NoMsg from './NoMsg'
+import { API_URL, API_BASE_URL } from "../api";
 const Home = () => {
    let {token,setToken}=useContext(mycontext)
 
@@ -24,7 +25,7 @@ const Home = () => {
    }
 
     async function aboutMe(){
-    let myres= await fetch("http://localhost:5000/api/auth/me",{
+    let myres= await fetch(`${API_BASE_URL}/auth/me`,{
         method:"GET",
         headers:{
             Authorization:`Bearer ${token}` 

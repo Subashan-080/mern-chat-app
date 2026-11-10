@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { useNavigate,Link } from 'react-router-dom';
 import { mycontext } from './Context';
 import { useContext } from 'react';
+import { API_URL, API_BASE_URL } from "../api";
 const Login = () => {
  let [state,setstate]  = useState({
         email:"",
@@ -20,7 +21,7 @@ const Login = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        let myres= await fetch ("http://localhost:5000/api/auth/login",{
+        let myres= await fetch (`${API_BASE_URL}/auth/login`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

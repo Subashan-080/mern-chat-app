@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
+import { API_URL, API_BASE_URL } from "../api";
 const Register = () => {
   let [state, setstate] = useState({
     name: "",
@@ -22,7 +22,7 @@ const Register = () => {
     e.preventDefault()
 
     try {
-      let res = await fetch("http://localhost:5000/api/auth/register", {
+      let res = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

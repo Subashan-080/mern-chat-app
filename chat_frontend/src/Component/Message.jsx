@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { mycontext } from './Context'
 import { useContext } from 'react'
 import { io } from 'socket.io-client'
+import { API_URL, API_BASE_URL } from '../api';
 const Message = (props) => {
     let convoId=null
 
@@ -26,7 +27,7 @@ const Message = (props) => {
 
     useEffect(()=>{
         async function getAll() {
-            let myres= await fetch (`http://localhost:5000/api/messages/conversation/${convoId}`,{
+            let myres= await fetch (`${API_BASE_URL}/messages/conversation/${convoId}`,{
                 headers:{
                     Authorization:`Bearer ${token}` 
                 }
@@ -42,7 +43,7 @@ const Message = (props) => {
     },[token])
 
     useEffect(()=>{
-        let mySocket=io("http://localhost:5000/",{
+        let mySocket=io(API_URL,{
             auth:{token}
         })
 
@@ -52,6 +53,7 @@ const Message = (props) => {
         mySocket.on("message:new",(data)=>{
             setAllMsg((prev)=>[...prev,data])
         })
+        
     },[token,convoId])
 
 
